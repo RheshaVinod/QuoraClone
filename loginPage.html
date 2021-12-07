@@ -1,0 +1,169 @@
+<html>
+    <head>
+        <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <link href='https://fonts.googleapis.com/css?family=Aldrich' rel='stylesheet'>
+    </head>
+    <style>
+        body{
+            /*background: rgb(56,138,114);
+background: linear-gradient(333deg, rgba(56,138,114,1) 0%, rgba(72,118,172,1) 88%);*/
+background-image: url('background2.jpg') ;
+background-repeat: no-repeat;
+  background-size: cover;
+ 
+        }
+       
+       .title{
+        /*font-family: 'Courier New', monospace; */
+        font-family: 'Aldrich';
+        padding-left: 40px;
+        font-size: 50px;
+        margin-top: 5px;
+        margin-bottom: 0px;
+      
+        
+       }
+    
+       .phrase{
+        font-family: Garamond, serif;
+        font-size: 20px;
+
+       }
+        #container{
+            align-content: center;
+            width: 600px;
+            height: 400px;
+            padding: 2px;
+            position: relative;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 100px;
+            margin-bottom: auto;
+            box-shadow: 0 0 10px;
+            background-color: white;
+            /*opacity: 0.8;*/
+           /*border-radius: 5%;*/
+            
+        }
+        #form div{
+           display:block;
+           margin-top: 20px;
+           padding-left: 20px;
+        }
+
+        #form input{
+            margin-left: 100px;
+           
+          
+            
+        }
+        #btn{
+            padding:10px;
+            width:250px;
+           
+            background-color: white; 
+            color: black; 
+            border: 2px solid black /*#F5D610;*//*#1088F5*/ ;/*#009999;*/
+
+        }
+        #btn:hover{
+            background-color: black /*#F5D610;*//*#1088F5*/ ;/*#009999;*/
+            color: white;
+        }
+
+    </style>
+    <script>
+        function myfunc(){
+            alert("Enter valid input");
+        }
+    </script>
+    <body onload="myfunc()">
+        <div id="container"></div>
+        <script type="text/babel">
+        var des =document.getElementById("container");
+        class Login extends React.Component
+        {
+            constructor(props)
+            {
+                super(props);
+                this.state={
+                    Username :"",
+                    Password : ""
+                };
+                this.handleChangeUsername = this.handleChangeUsername.bind(this);
+                this.handleChangePassword = this.handleChangePassword.bind(this);
+                this.handleSubmit = this.handleSubmit.bind(this);
+               
+            }
+            handleChangePassword(event)
+            {
+                this.setState({
+                      Username:this.state.Username,
+                      Password:event.target.value
+                  });
+               
+            }
+            handleChangeUsername(event)
+            {
+                this.setState({
+                      Username:event.target.value,
+                      Password:this.state.Password
+                  });
+                
+            }
+            handleSubmit (event) {
+               
+               
+                
+                console.log("Username entered: " + this.state.Username);
+                console.log("Password entered: " + this.state.Password);
+                //event.preventDefault();
+                  }
+            render()
+            {
+                var imgStyle={
+                    float:'left' ,
+                    borderRadius: '100%',
+                    width:'70px',
+                    height:'70px',
+                }
+                return(
+                    <div>
+                    <div className="heading">
+                        <div style={{paddingLeft:'20px'}}><img src="logo.png" alt="logo" style={imgStyle}></img></div>
+                        <div style={{paddingLeft:'200px'}}>
+                            <p className="title" >QUARK</p>
+                        <p className="phrase"> A place to gain and share knowledge</p>
+                        </div>
+                        
+                    </div>
+                    
+                    <div id="form">
+                        <h4 style={{paddingLeft:'20px',letterSpacing: '5px',fontFamily: 'Georgia, serif',fontSize:'20px'}}>LOGIN</h4>
+                    <form onSubmit={this.handleSubmit} action="/login" method="POST">
+                        
+                    <div style={{fontFamily:'verdana'}}>Username<input name="name" value={this.state.Username} onChange={this.handleChangeUsername} type="mail" size="45"/></div>
+                    <div style={{fontFamily:'verdana'}}>Password <input name="password"  value={this.state.Password} onChange={this.handleChangePassword} type="password" size="45"/></div>
+                   <div>   <a href="ForgotPass.html"  >Forgot Password?</a>
+                        <input id="btn" type="submit" value="SUBMIT"  /></div>
+                       
+                    </form>
+                    </div>
+                    <hr/>
+                    <p style={{textAlign:'center'}}>Not Registered?Create an account now<a href="signUp.html">SignUp</a></p>
+                   
+                    <p style={{textAlign:'center',paddingTop:'70px',color:'white'}}><a >About Us</a>   |   <a >Contact Us</a>   |   <a >Help</a></p>
+                    </div>
+                   
+                    
+                );
+            }
+            
+
+        }
+        ReactDOM.render( <Login/>,des);
+        </script>
+    </body>
+</html>
